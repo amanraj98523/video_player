@@ -1,0 +1,27 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.video-container {
+  margin: 20px;
+}
+
+.assessment-container {
+  margin: 20px;
+}
+
+.next-task-button {
+  margin: 20px;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.next-task-button:hover {
+  background-color: #45a049;
+}

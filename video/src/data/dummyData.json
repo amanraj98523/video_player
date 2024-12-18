@@ -1,0 +1,25 @@
+[
+  {
+    "id": 1,
+    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&controls=0&showinfo=0",
+    "title": "Introduction to LMS",
+    "description": "An introductory video about the LMS.",
+    "assessment": {
+      "type": "multiple-choice",
+      "question": "What does LMS stand for?",
+      "options": ["Learning Management System", "Library Management System", "Log Management Software"],
+      "correctAnswer": "Learning Management System"
+    }
+  },
+  {
+    "id": 2,
+    "videoUrl": "https://www.youtube.com/embed/tgbNymZ7vqY?rel=0&controls=0&showinfo=0",
+    "title": "Advanced Features",
+    "description": "A deeper dive into LMS features.",
+    "assessment": {
+      "type": "short-answer",
+      "question": "Name one advanced feature of LMS.",
+      "correctAnswer": "Analytics"
+    }
+  }
+]
