@@ -5,7 +5,7 @@ const Assessment = ({ assessment, onComplete }) => {
   const [feedback, setFeedback] = useState("");
 
   const handleSubmit = () => {
-    if (userAnswer === assessment.correctAnswer) {
+    if (userAnswer.trim().toLowerCase() === assessment.correctAnswer.toLowerCase()) {
       setFeedback("Correct! Well done.");
       onComplete();
     } else {
@@ -17,23 +17,25 @@ const Assessment = ({ assessment, onComplete }) => {
     <div className="assessment-container">
       <h3>{assessment.question}</h3>
       {assessment.type === "multiple-choice" ? (
-        <div>
-          {assessment.options.map((option, index) => (
-            <button
-              key={index}
-              onClick={() => setUserAnswer(option)}
-              disabled={feedback === "Correct! Well done."}
-            >
+        assessment.options.map((option, index) => (
+          <div key={index}>
+            <label>
+              <input
+                type="radio"
+                name="answer"
+                value={option}
+                onChange={(e) => setUserAnswer(e.target.value)}
+              />
               {option}
-            </button>
-          ))}
-        </div>
+            </label>
+          </div>
+        ))
       ) : (
         <textarea
-          placeholder="Type your answer here..."
           value={userAnswer}
           onChange={(e) => setUserAnswer(e.target.value)}
-        ></textarea>
+          placeholder="Type your answer here..."
+        />
       )}
       <button onClick={handleSubmit}>Submit</button>
       {feedback && <p>{feedback}</p>}

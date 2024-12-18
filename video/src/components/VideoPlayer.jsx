@@ -1,16 +1,32 @@
-import React, { useRef } from "react";
-import { scroller } from "react-scroll";
+import React, { useEffect, useRef } from "react";
 
 const VideoPlayer = ({ videoUrl, onVideoEnd }) => {
   const iframeRef = useRef();
 
-  const handleVideoEnd = () => {
-    if (onVideoEnd) onVideoEnd();
-  };
+  useEffect(() => {
+    const handleVideoMessage = (event) => {
+      const data = JSON.parse(event.data);
+      if (data.event === "onStateChange" && data.info === 0) {
+        onVideoEnd();
+      }
+    };
+
+    window.addEventListener("message", handleVideoMessage);
+    return () => window.removeEventListener("message", handleVideoMessage);
+  }, [onVideoEnd]);
 
   return (
-    <div className="video-container">
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/aWmUVINkzS8?si=tAC8-X_4DVk0ZJg9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <div className="p-4 bg-gray-100 dark:bg-gray-800 shadow-md rounded-md">
+      <iframe
+        ref={iframeRef}
+        width="80%"
+        height="500"
+        src={`${videoUrl}&enablejsapi=1`}
+        title="YouTube video"
+        frameBorder="0"
+        allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+        className="rounded-md"
+      ></iframe>
     </div>
   );
 };

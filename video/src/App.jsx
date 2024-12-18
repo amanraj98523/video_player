@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import VideoPlayer from "./components/VideoPlayer";
 import Assessment from "./components/Assessment";
 import NextTaskButton from "./components/NextTaskButton";
+import ThemeToggle from "./components/ThemeToggle";
 import dummyData from "./data/dummyData.json";
 
 const App = () => {
@@ -31,6 +32,7 @@ const App = () => {
         <div key={task.id} id={`task-${index}`} className="task-section">
           {index === currentTask && (
             <>
+              <ThemeToggle/>
               <VideoPlayer videoUrl={task.videoUrl} onVideoEnd={handleVideoEnd} />
               <div id={`assessment-${index}`}>
                 <Assessment
